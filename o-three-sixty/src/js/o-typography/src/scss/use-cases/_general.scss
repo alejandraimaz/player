@@ -1,0 +1,132 @@
+////
+/// @group Use cases
+/// @link http://registry.origami.ft.com/components/o-typography
+////
+
+/// Subscript text
+@mixin oTypographySub {
+	@include oTypographySans(-2);
+	display: inline-block;
+	margin-bottom: -5px;
+	vertical-align: sub;
+}
+
+/// Superscript text
+@mixin oTypographySuper {
+	@include oTypographySans(-2);
+	display: inline-block;
+	margin-top: -3px;
+	vertical-align: super;
+}
+
+/// Custom link styles
+@mixin oTypographyLinkCustom($baseColor, $hoverColor, $backgroundColor: 'paper', $outlineColor: 'teal') {
+	color: oColorsGetPaletteColor($baseColor);
+	text-decoration: none;
+	cursor: pointer;
+	border-bottom: 2px solid oColorsMix(oColorsGetPaletteColor($baseColor), oColorsGetPaletteColor($backgroundColor), $percentage: 20);
+
+	&:hover,
+	&:focus {
+		color: oColorsGetPaletteColor($hoverColor);
+		border-bottom-color: oColorsMix(oColorsGetPaletteColor($baseColor), oColorsGetPaletteColor($backgroundColor), $percentage: 40);
+	}
+
+	&:focus {
+		outline: 3px solid oColorsGetPaletteColor($outlineColor);
+		border-bottom-color: transparent;
+	}
+}
+
+/// Standard link styles
+@mixin oTypographyLink {
+	@include oTypographyLinkCustom(
+		$baseColor: oColorsGetUseCase(link, text),
+		$hoverColor: 'teal-30'
+	);
+}
+
+/// Make something italic
+@mixin oTypographyItalic {
+	font-style: italic;
+}
+
+/// Styling for <ul> and <ol>
+@mixin oTypographyList {
+	@include oTypographyMargin($top: 0, $bottom: 7);
+
+	li {
+		@include oTypographySerif($scale: 1, $line-height: 28px);
+		@include oTypographyMargin($top: 0, $bottom: 0);
+		@include oColorsFor('o-typography-body');
+	}
+}
+
+/// Styles for <ol> tags
+@mixin oTypographyListOrdered {
+	padding-left: 0;
+
+	// Counter-increment/counter-reset is not supported in
+	// <IE8, so use browserhack to only target supported browsers
+	:root & {
+		counter-reset: item;
+
+		li {
+			display: block;
+			position: relative;
+			padding-left: oTypographySpacingSize($units: 6);
+
+
+			&:before {
+				@include oTypographySansBold($scale: 0);
+				@include oColorsFor('o-typography-list-prefix');
+				display: inline-block;
+				width: oTypographySpacingSize($units: 5);
+				font-feature-settings: "tnum";
+				margin-right: oTypographySpacingSize($units: -1);
+				content: counter(item);
+				counter-increment: item;
+				position: absolute;
+				left: 0;
+				top: 4px;
+			}
+		}
+	}
+}
+
+/// Styles for <ul> tags
+@mixin oTypographyListUnordered {
+	padding-left: 0;
+
+	li {
+		display: block;
+		position: relative;
+		padding-left: oTypographySpacingSize($units: 6);
+
+		&:before {
+			@include oColorsFor('o-typography-list-prefix');
+			display: inline-block;
+			position: absolute;
+			content: '\2022'; // dot character
+			top: -3px; // magic number alignment
+			left: -2px;
+			font-size: oTypographySpacingSize($units: 8);
+		}
+	}
+}
+
+/// Style for <blockquote> tags including `p`
+/// and `footer` elements
+@mixin oTypographyBlockquote {
+	margin-left: 0;
+	padding-left: oTypographySpacingSize($units: 4);
+	border-left: oTypographySpacingSize($units: 1) solid oColorsGetColorFor('o-typography-blockquote', border);
+
+	p {
+		@include oTypographyBody;
+	}
+
+	footer {
+		@include oTypographyFooter;
+	}
+}

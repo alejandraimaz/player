@@ -1,0 +1,25 @@
+@import 'o-colors/main';
+
+@import 'src/scss/variables';
+@import 'src/scss/mixins';
+
+@if $o-loading-is-silent == false {
+
+	.o-loading {
+		@include oLoading();
+	}
+
+	@each $key, $value in $o-loading-colors {
+		.o-loading--#{$key} {
+			@include oLoadingColor($value);
+		}
+	}
+
+	@each $key, $value in $o-loading-sizes {
+		.o-loading--#{$key} {
+			@include oLoadingSize($value);
+		}
+	}
+
+	$o-loading-is-silent: true !global;
+}

@@ -1,0 +1,95 @@
+$o-buttons-is-silent: true;
+@import 'o-buttons/main';
+@import "o-icons/main";
+@import "o-video/main";
+
+[data-o-component="o-three-sixty"] {
+	display: inline-block;
+    position: relative;
+
+	.webvr-polyfill-fullscreen-wrapper {
+		canvas {
+			max-width: 100%;
+			max-height: 100%;
+		}
+	}
+
+	.button-container {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		top: 0;
+		right: 0;
+		padding: 0.5em;
+		text-align: right;
+		vertical-align: bottom;
+		pointer-events: none;
+
+		button {
+
+			pointer-events: auto;
+			display: inline-block;
+			@include oButtons(big, inverse);
+
+			&.play-icon {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				border-radius: 50%;
+				border: none;
+				width: 70px;
+				height: 70px;
+				padding: 0;
+				margin: 0;
+				text-align: center;
+				font-size: 0;
+				@include oIconsGetIcon(play, #2bbbbf, 70px);
+			}
+
+			&.cardboard-icon:before {
+				display: inline-block;
+				content: '';
+				width: 1.5em;
+				height: 1.5em;
+				background: url("https://image.webservices.ft.com/v1/images/raw/http%3A%2F%2Fftlabs.github.io%2Fthree-sixty-video%2Fbuild%2Fassets%2Fcardboard.svg?source=test") no-repeat center center;
+				background-size: contain;
+				vertical-align: top;
+				margin: -0.25em 0;
+				margin-right: 0.2em;
+			}
+		}
+	}
+
+	button.exit-fullscreen {
+		display: none !important;
+	}
+
+	&:fullscreen {
+		button.exit-fullscreen {
+			display: inline-block !important;
+		}
+
+		button.fullscreen {
+			display: none !important;
+		}
+	}
+	&:-moz-full-screen {
+		button.exit-fullscreen {
+			display: inline-block !important;
+		}
+
+		button.fullscreen {
+			display: none !important;
+		}
+	}
+	&:-webkit-full-screen {
+		button.exit-fullscreen {
+			display: inline-block !important;
+		}
+
+		button.fullscreen {
+			display: none !important;
+		}
+	}
+}

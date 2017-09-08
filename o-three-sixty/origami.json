@@ -1,0 +1,43 @@
+{
+	"description": "Display 360 degree panoramic media from brightcove",
+	"origamiType": "module",
+	"origamiVersion": 1,
+	"support": "https://github.com/ftlabs/o-three-sixty/issues",
+	"supportStatus": "experimental",
+	"ci": {
+		"circle": "https://circleci.com/api/v1/project/ftlabs/o-three-sixty"
+	},
+	"browserFeatures": {
+		"required": [
+			"Element.prototype.matches"
+		]
+	},
+	"demosDefaults": {
+		"js": "./demos/src/demo.js",
+		"sass": "./main.scss"
+	},
+	"demos": [
+		{
+			"name": "o-video",
+			"template": "demos/src/o-video.mustache",
+			"description": "Showing 360 video content from o-video"
+		},
+		{
+			"name": "img",
+			"template": "demos/src/img.mustache",
+			"expanded": true,
+			"description": "Showing a 360 image from an image element."
+		},
+		{
+			"name": "video",
+			"template": "demos/src/video.mustache",
+			"description": "Showing a 360 video from a video element."
+		},
+		{
+			"name": "img-buttons",
+			"template": "demos/src/img-buttons.mustache",
+			"description": "Instantiate with JS, and add buttons for interactivity.",
+			"js": "./demos/src/demo-img-buttons.js"
+		}
+	]
+}

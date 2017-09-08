@@ -1,0 +1,26 @@
+{
+  "name": "o-typography",
+  "main": [
+    "main.scss"
+  ],
+  "ignore": [
+    ".travis.yml"
+  ],
+  "dependencies": {
+    "o-colors": "^4.1.1",
+    "o-fonts": "^3.0.0",
+    "o-grid": "^4.3.1",
+    "fontfaceobserver": "^2.0.9"
+  },
+  "homepage": "https://github.com/Financial-Times/o-typography",
+  "version": "5.2.0",
+  "_release": "5.2.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v5.2.0",
+    "commit": "1a2cc2558fd0c42dae3e4e2a524f84bc1d2d0da9"
+  },
+  "_source": "https://github.com/Financial-Times/o-typography.git",
+  "_target": "^5",
+  "_originalSource": "o-typography"
+}

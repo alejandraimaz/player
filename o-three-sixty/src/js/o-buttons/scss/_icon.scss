@@ -1,0 +1,121 @@
+/// Icon Buttons
+///
+/// Outputs styles for every icon in o-buttons-icons at every theme in o-buttons-themes
+/// @param {String} $buttonClass - class to apply o-buttons styles to
+@mixin oButtonsIcon($buttonClass: $o-buttons-class) {
+	// Browserhack to only apply these styles for IE7 and up. IE6 will get the
+	// text fallback. Hack documented here: http://browserhacks.com/#hack-da690292d4fddd94dc7bdd50e38b5713
+	html > body .#{$buttonClass}-icon {
+		@include oButtonsBaseStyles;
+
+		@each $theme, $properties in $o-buttons-themes {
+			@each $icon in $o-buttons-icons {
+				@include oButtonsGetButtonForIconAndTheme($icon, $theme);
+			}
+		}
+	}
+}
+
+/// Get Button For Icon and Theme
+///
+/// Outputs background-image property for a given icon/theme at all states set
+/// in that theme's state list
+/// example:
+/// .my-button--left-arrow {
+///	 @include oButtonsGetButtonForIconAndTheme(left-arrow, standout);
+/// }
+///
+/// @param {String} $icon-name, any icon name found in o-ft-icons
+/// @param {String} $theme, any theme name as defined in $o-buttons-themes (standard, standout, etc). Defaults to standard.
+/// @param {String} $button-class, defaults to o-buttons ($o-buttons-class' default value)
+///
+@mixin oButtonsGetButtonForIconAndTheme($icon-name, $theme: secondary, $buttonClass: $o-buttons-class) {
+
+	&.#{$buttonClass}-icon--#{$icon-name} {
+
+		$theme-selector: null;
+		@if $theme == 'secondary' {
+			$theme-selector: '&';
+		} @else {
+			$theme-selector: '&.#{$buttonClass}--#{$theme}';
+		}
+
+		#{$theme-selector} {
+			@include _oButtonsGetIconForThemeAndState($icon-name, $theme, normal);
+
+			// http://www.w3.org/TR/wai-aria/states_and_properties#aria-selected
+			// http://www.w3.org/TR/wai-aria/states_and_properties#aria-pressed
+			&[aria-selected=true], // e.g. A selected tab or page number in pagination
+			&[aria-pressed=true] { // e.g. A "follow" button that is pressed
+				@include _oButtonsGetIconForThemeAndState($icon-name, $theme, pressedselected);
+			}
+
+			&[disabled] {
+				@include _oButtonsGetIconForThemeAndState($icon-name, $theme, normal);
+			}
+
+			&:not([disabled]) {
+				&:focus:not(:hover),
+				&:hover {
+					@include _oButtonsGetIconForThemeAndState($icon-name, $theme, hover);
+				}
+				&:active {
+					@include _oButtonsGetIconForThemeAndState($icon-name, $theme, active);
+				}
+			}
+
+			// Hack to get the active state colour svg to download to prevent FOIC
+			&:after {
+				@include _oButtonsGetIconForThemeAndState($icon-name, $theme, active);
+				content: '';
+			}
+		}
+	}
+}
+
+/// Base styling for buttons
+///
+/// @param {String} $button-class, defaults to o-buttons ($o-buttons-class' default value)
+@mixin oButtonsBaseStyles($buttonClass: $o-buttons-class) {
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-position: 3px;
+	padding-left: 22px;
+
+	&.o-buttons-icon--icon-only {
+		padding-left: 0;
+		background-position: 50%;
+	}
+
+	.#{$buttonClass}-icon__label {
+		@include oButtonsIconButtonLabel;
+	}
+}
+
+/// Request an icon from o-icons with color based on the o-buttons theme and state
+///
+/// @param {String} $icon-name, icon to request
+/// @param {String} $theme, one of $o-colors-theme
+/// @param {String} $state - One of normal, hover, focus, selected, disabled, pressed
+@mixin _oButtonsGetIconForThemeAndState($icon-name, $theme, $state) {
+	$state-color: 'o-buttons-#{$theme}-#{$state}';
+	$icon-color: oColorsGetColorFor($state-color, text);
+
+	@if $icon-color != null {
+		@include oIconsGetIcon($icon-name: $icon-name, $apply-base-styles: false, $apply-width-height: false, $color: $icon-color, $iconset-version: 1);
+	}
+}
+
+/// Icon Button Label
+///
+/// Where an icon button is used, a span with an informative text label in should
+/// be included so that if the styles don't load, the button will fallback to a text
+/// label. This solution also works well for screen readers.
+/// This mixin outputs the styles for visually hiding the label
+///
+@mixin oButtonsIconButtonLabel() {
+	font-size: 0;
+	height: 1px;
+	overflow: hidden;
+	display: block;
+}

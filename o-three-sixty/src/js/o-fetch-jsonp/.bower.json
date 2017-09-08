@@ -1,0 +1,15 @@
+{
+  "name": "o-fetch-jsonp",
+  "main": "main.js",
+  "homepage": "https://github.com/Financial-Times/o-fetch-jsonp",
+  "version": "2.0.2",
+  "_release": "2.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.0.2",
+    "commit": "a631d59afdeef1593f29f48db1d65beb87f12ea0"
+  },
+  "_source": "https://github.com/Financial-Times/o-fetch-jsonp.git",
+  "_target": "^2.0.0",
+  "_originalSource": "o-fetch-jsonp"
+}

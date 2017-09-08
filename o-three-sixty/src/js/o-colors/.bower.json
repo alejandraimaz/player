@@ -1,0 +1,21 @@
+{
+  "name": "o-colors",
+  "main": [
+    "main.scss"
+  ],
+  "ignore": [
+    "test",
+    ".travis.yml"
+  ],
+  "homepage": "https://github.com/Financial-Times/o-colors",
+  "version": "4.1.1",
+  "_release": "4.1.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v4.1.1",
+    "commit": "14b61e6c7df14474649253d593a018cd7b478e50"
+  },
+  "_source": "https://github.com/Financial-Times/o-colors.git",
+  "_target": "^4.0.1",
+  "_originalSource": "o-colors"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "o-loading",
+  "main": [
+    "main.scss"
+  ],
+  "ignore": [
+    "demo"
+  ],
+  "dependencies": {
+    "o-colors": "^4.0.1"
+  },
+  "homepage": "https://github.com/Financial-Times/o-loading",
+  "version": "2.1.0",
+  "_release": "2.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.1.0",
+    "commit": "b37304441ce548961083baec12ebe9886f234975"
+  },
+  "_source": "https://github.com/Financial-Times/o-loading.git",
+  "_target": "^2",
+  "_originalSource": "o-loading"
+}

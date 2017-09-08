@@ -1,0 +1,29 @@
+$o-loading-is-silent: false;
+@import '../../main';
+
+.demo {
+	text-align: center;
+	min-height: 200px;
+}
+
+.demo-card {
+	display: inline-block;
+	padding: 20px;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+}
+
+.demo-card--light {
+	background: #f6e9d8;
+}
+
+.demo-card--dark {
+	background: #333333;
+}
+
+.demo-toggle {
+	margin: 20px;
+
+	&:not([disabled]) ~ .o-loading {
+		display: none;
+	}
+}

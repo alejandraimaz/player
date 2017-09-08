@@ -1,0 +1,21 @@
+{
+  "name": "o-three-sixty",
+  "dependencies": {
+    "o-video": "https://github.com/Financial-Times/o-video.git",
+    "o-buttons": "https://github.com/Financial-Times/o-buttons.git",
+    "o-icons": "https://github.com/Financial-Times/o-icons.git",
+    "qrious": "qr-js#^2.0.1",
+    "o-viewport": "https://github.com/Financial-Times/o-viewport.git"
+  },
+  "main": [
+    "main.scss",
+    "main.js"
+  ],
+  "ignore": [
+    ".gitignore",
+    "build",
+    "test",
+    "karma.conf.js",
+    "package.json"
+  ]
+}
